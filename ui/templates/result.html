@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ mood.title() }} Mood Playlists 🎵</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{{ mood }}">
+
+<div class="result-container">
+    <h2 class="mood-title">{{ mood.title() }} Vibes 🎶</h2>
+
+    {% if message %}
+    <div class="uplift-wrapper">
+      <p class="uplift-message">{{ message }}</p>
+    </div>
+    {% endif %}
+
+    <div class="playlist-grid">
+        {% for name, link in playlists %}
+        <div class="playlist-card">
+            <div class="playlist-info">
+                <p class="playlist-name">{{ name }}</p>
+                <a href="{{ link }}" target="_blank" class="listen-btn">🎧 Listen</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <a href="/" class="back-btn">← Back</a>
+</div>
+
+{% if message and mood == 'happy' %}
+<div class="confetti-wrapper">
+    <div class="confetti">🎉</div>
+    <div class="confetti">✨</div>
+    <div class="confetti">🎵</div>
+    <div class="confetti">🎶</div>
+    <div class="confetti">🌈</div>
+    <div class="confetti">💫</div>
+</div>
+{% endif %}
+
+</body>
+</html>

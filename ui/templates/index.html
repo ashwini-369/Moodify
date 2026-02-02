@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎶 Moodify </title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="home">
+  <div class="background-glow"></div>
+
+  <div class="container">
+    <h1 class="title">🎧 Moodify</h1>
+
+    <!-- 🔍 Search bar -->
+    <form action="/search" method="GET" class="search-bar">
+      <input type="text" name="q" placeholder="Search TuneAura" required>
+      <button type="submit">🔍</button>
+    </form>
+    <p class="subtitle">Select your vibe !!!!!!!</p>
+<br>
+<br>
+    <form action="/recommend" method="POST" class="mood-form">
+      <button class="mood-btn happy" name="mood" value="happy">😊 Happy</button>
+      <button class="mood-btn sad" name="mood" value="sad">💔 Sad</button>
+      <button class="mood-btn chill" name="mood" value="chill">🌙 Chill</button>
+      <button class="mood-btn energetic" name="mood" value="energetic">⚡ Energetic</button>
+    </form>
+
+    <form action="/surprise" method="POST">
+      <button class="mood-btn surprise">😜 Surprise Me!</button>
+    </form>
+    <form action="/detect_mood" method="POST" class="mood-form">
+  <input type="text" name="feeling" placeholder="Type how you feel..." required>
+  <button type="submit">🧠 Detect My Mood</button>
+</form>
+
+
+    <!-- 🕒 Recently Played -->
+    {% if recent %}
+    <div class="recent-section">
+      <h2 class="recent-title">🕒 Recently Played</h2>
+      <ul class="recent-list">
+        {% for item in recent %}
+        <li>
+          <span class="mood-tag {{ item.mood }}">{{ item.mood.title() }}</span>
+          <span class="recent-name">{{ item.playlist }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+  {% if suggestion %}
+<div class="daily-vibe">
+  <h2>🌞 Today's Vibe: <span class="mood-tag {{ vibe }}">{{ vibe.title() }}</span></h2>
+  <a href="{{ suggestion[1] }}" target="_blank" class="listen-btn">🎧 Play {{ suggestion[0] }}</a>
+</div>
+{% endif %}
+
+  </div>
+  <footer style="text-align:center; opacity:0.7; margin-top:2rem;">
+   
+
+</footer>
+</body>
+</html>

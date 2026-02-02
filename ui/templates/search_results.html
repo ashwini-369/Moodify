@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="title">🎵 Results for "{{ query }}"</h1>
+
+    <div class="results-grid">
+        {% for item in results %}
+       <div class="result-card" onclick="openPlayer('{{ item.embed_url }}', '{{ item.title }}')">
+    <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="thumb">
+    <p class="song-title">{{ item.title }}</p>
+</div>
+
+        {% endfor %}
+    </div>
+
+    <a href="/" class="back-btn">← Back</a>
+</div>
+
+<!-- 🎧 Popup Player -->
+<div class="popup hidden" id="playerPopup">
+    <div class="popup-content">
+        <span id="close-btn" onclick="closePlayer()">✖</span>
+        <iframe id="yt-frame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+function openPlayer(url, title) {
+    // Open popup
+    const popup = document.getElementById('playerPopup');
+    const frame = document.getElementById('yt-frame');
+    frame.src = url + "?autoplay=1";
+    popup.classList.remove('hidden');
+
+    // Send AJAX request to add to recent
+    fetch('/add_recent', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({title: title, mood: 'search'})
+    });
+}
+
+function closePlayer() {
+    const popup = document.getElementById('playerPopup');
+    const frame = document.getElementById('yt-frame');
+    popup.classList.add('hidden');
+    frame.src = "";
+}
+</script>
+
+
+</body>
+</html>
