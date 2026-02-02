@@ -46,17 +46,17 @@ The ML model is trained on a small sample dataset and is meant as a **prototype*
     cd Moodify
 
 2. Create and activate a virtual environment:
-    python -m venv venv
-    venv\Scripts\activate
+  - python -m venv venv
+  - venv\Scripts\activate
 
 3. Install dependencies:
-    pip install -r requirements.txt
+  - pip install -r requirements.txt
 
 4. Run the application:
-    python run.py
+  - python run.py
 
-5. Open your browser and visit:
-    http://127.0.0.1:5000/
+5. Open  browser and visit:
+  -  http://127.0.0.1:5000/
 
 ## Future Improvements
  - Improve the ML model using a larger dataset
@@ -65,5 +65,5 @@ The ML model is trained on a small sample dataset and is meant as a **prototype*
  - Deploy the application to a cloud platform
  
 ## Author
-  Ashwini
-  Computer Science Engineering Student
+  - Ashwini
+  - Computer Science Engineering Student
