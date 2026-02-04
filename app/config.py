@@ -1,2 +1,4 @@
-YOUTUBE_API_KEY = "AIzaSyDBW8ERuUX-T97s7LP8pYdRoVAxojsk-xA"
-SECRET_KEY = "lokis-secret"
+import os
+
+YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret")
